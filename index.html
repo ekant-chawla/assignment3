@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale =1.0">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<title>Facebook Info</title>
+</head>
+<body>
+
+
+	<nav class="navbar navbar-expand-sm bg-nav">
+		<h1>Project 3 - Facebook API</h1>
+	    <button id ="modal-toggle" class="btn" type="button" data-toggle="modal" data-target="#myModal">Set Options</button>
+	</nav>
+
+	<div class="modal fade" id="myModal">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">Set Options</h4>
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	      </div>
+
+	      <!-- Modal body -->
+	      <div class="modal-body container">
+	      	<div class="row input-container">
+		      	<div class="col-sm-12"><input type="text" id="access_token" placeholder="Paste Access Token Here"></div>
+		      	<div class="col-sm-6 col-md-4"><input type="checkbox" value="name" checked> Name</div>
+		      	<div class="col-sm-6 col-md-4"><input type="checkbox" value="gender" checked> Gender</div>
+		      	<div class="col-sm-6 col-md-4"><input type="checkbox" value="birthday" checked> Birthday</div>
+		      	<div class="col-sm-6 col-md-4"><input type="checkbox" value="hometown" checked> Hometown</div>
+		      	<div class="col-sm-6 col-md-4"><input type="checkbox" value="friends.limit(0)" checked> Friend Count</div>	
+		      	<div class="col-sm-6 col-md-4"><input type="checkbox" value="religion" checked> Religion</div>
+		      	<div class="col-sm-6 col-md-4"><input type="checkbox" value="political" checked> Political</div>
+		      	<div class="col-sm-6 col-md-4"><input type="checkbox" value="about" checked> About</div>
+		      	<div class="col-sm-6 col-md-4"><input type="checkbox" value="website" checked> Website</div>
+		      	<div class="col-sm-6 col-md-4"><input type="checkbox" value="email" checked> Email</div>
+		      	<div class="col-sm-6 col-md-4"><input type="checkbox" value="education" checked> Education</div>
+		      	<div class="col-sm-6 col-md-4"><input type="checkbox" value="work" checked> Work</div>
+		      	<div class="col-sm-6 col-md-4"><input type="checkbox" value="relationship_status" checked> Relationship Status</div>
+		      	<div class="col-sm-6 col-md-4"><input type="checkbox" value="posts{message,created_time,story,full_picture}" checked> Posts</div>
+	      	</div>
+	      </div>
+	      <!-- Modal footer -->
+	      <div class="modal-footer">
+	      	<a href="https://developers.facebook.com/tools/explorer/" target="_blank">Generate Token</a>
+	        <button id="submit-button" type="button" class="btn" data-dismiss="modal">Get Data</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<div class="instructions container">
+		<h2>Follow below instructions to use this application.</h2>
+		<ol>
+			<li>Click the button in top right to open options panel.</li>
+			<li>Enter your FB token. You can generate your FB token <a href="https://developers.facebook.com/tools/explorer/" target="_blank">click here</a> and click Get Token.</li>
+			<li>Check the checkboxes corresponding to the data you want to see. Note that you need to provide appropriate permissions while generating token.</li>
+			<li>Click Get Data and see the magic. Enjoy :)</li>
+		</ol>
+	</div>
+
+	<div class="loader-container">
+		<div class="loader"></div>
+		<p> Getting Requested Data. Please Wait.</p>
+	</div>
+
+	<div class="api-err">
+		<h2></h2>
+		<p></p>
+	</div>
+
+	<div class="container main-container">
+		<div id="profile-container" class="row">
+			<!--profile image-->
+			<div class="col-md-4 col-lg-3 img-container">
+				<img id="profile-img" src="">
+			</div>
+			<!--user details-->
+			<div class="col detail-container">
+				<span class="section-title">Basic Info</span>
+				<hr>
+				<dl id="basic-info" class="row">			
+				</dl>
+				<p class="missing"></p>
+				<span class="section-title">Contact Details</span>
+				<hr>
+				<dl id="contact-info" class="row">			
+				</dl>
+				<p class="missing"></p>
+				<span class="section-title">About</span>
+				<hr>
+				<p class="about-text"></p>
+				<p class="missing"></p>
+			</div>
+		</div>
+
+		<!--Misc. Info-->
+		<section class="row misc-info">
+			<!--education-->
+			<div id="education" class="col-lg-4 misc-info-sub-section">
+				<i class="fas fa-graduation-cap section-title"> <span> Education</span></i>
+				<ul class="edu-list bullet-list">
+			
+				</ul>
+				<p class="missing"></p>
+			</div>
+
+			<!--work-->
+			<div id="work" class="col-lg-4 misc-info-sub-section">
+				<i class="fas fa-briefcase section-title"><span> Work</span></i>
+				<ul class="work-list bullet-list">
+				</ul>
+				<p class="missing"></p>
+			</div>
+
+			<!--relationship status-->
+			<div id="relation" class="col-lg-4 misc-info-sub-section">
+				<i class="fas fa-heart section-title"><span> Relationship</span></i>
+				<p id="rel-status">Single</p>
+				<p class="missing"></p>
+			</div>
+		</section>
+
+		
+		<h3>Posts</h3>
+		<div class="row post-container">
+				
+			<!--all posts are with below
+			<div class="post card col-lg-5">
+				<img class="card-img-top" src="">
+				<div class="card-body">
+					<p class="card-title"></p>
+					<p class="card-text"></p>
+				</div>
+			</div>
+			-->
+
+		</div>
+		<p class="missing"></p>
+		
+	</div>
+
+	<!--footer-->
+	<footer class="my-footer bg-footer">
+		<div class="container copyright">
+			<p>© Copyright 2018</p>
+		</div>
+	</footer>
+
+
+
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script type="text/javascript" src="js/app.js"></script>
+</body>
+</html>

@@ -37,6 +37,10 @@ input[type=checkbox]:hover{
 	cursor: pointer;
 }
 
+.close:focus,.close:hover{
+	outline: none;
+}
+
 .post{
 	box-shadow:1px 1px 10px 1px black;
 	border:none;
@@ -153,7 +157,7 @@ button#modal-toggle:hover,button#submit-button:hover{
 
 .instructions{
 	font-family: inherit;
-	color: #255abd;;
+	color: #255abd;
 }
 
 .instructions h2{
@@ -161,13 +165,10 @@ button#modal-toggle:hover,button#submit-button:hover{
 	text-align: center;
 }
 
-
 .main-container{
 	display: none;
 	font-family: inherit;
 }
-
-
 
 #profile-container{
 	margin-top: 10px;
@@ -186,17 +187,11 @@ button#modal-toggle:hover,button#submit-button:hover{
 	text-transform: capitalize;	
 }
 
-
-
-
-
-
 #profile-img{
 	border:1px solid #255abd;
 	border-radius: 5px;
 	max-width: 200px; 
 	width: inherit;
-
 }
 
 .img-container{
@@ -255,7 +250,7 @@ button#modal-toggle:hover,button#submit-button:hover{
 
 .copyright{
 	text-align: center;
-	font-size: 0.8em !important;
+	font-size: 0.8em;
 	font-family: inherit;
 }
 
